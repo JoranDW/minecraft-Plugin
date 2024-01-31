@@ -1,0 +1,11 @@
+name: EerstePlugin
+version: '${project.version}'
+main: com.joran.test.Main
+api-version: '1.19'
+authors: [Joran]
+description: Eerste plugin van joran
+commands:
+  joran:
+    description: Algemene plugin command
+  config:
+    description: .zdkfljgirh

@@ -1,0 +1,8 @@
+word: 'kaas'
+#dit is even om te testen
+nummer: 3435
+Boolean: true
+String-list:
+  - 'waarde1'
+  - 'waarde2'
+  - 'waarde3'
