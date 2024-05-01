@@ -5,10 +5,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
@@ -16,6 +19,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.Location;
 import org.bukkit.block.data.Openable;
 import org.bukkit.block.data.BlockData;
+import sun.security.mscapi.CPublicKey;
 
 import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.block;
 
@@ -35,6 +39,10 @@ public final class Main extends JavaPlugin implements Listener {
 
         getCommand("config").setExecutor(new configCommand(this));
 
+        getCommand("entity").setExecutor(new spawnEntityCmd());
+        getCommand("vanish").setExecutor(new VanishCommand());
+
+
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
@@ -42,8 +50,17 @@ public final class Main extends JavaPlugin implements Listener {
 
 
     @EventHandler
-    public void onPlayerFlight(PlayerDropItemEvent f) {
-        f.getPlayer().giveExpLevels(1000000000);
+    public  void onEntityDeath(EntityDeathEvent e){
+
+        if (joranCommand.isLoggerOn == true) {
+            System.out.println(e.getEntity() + " is doodgegaan op deze coordinaten= " + e.getEntity().getLocation());
+        }
+    }
+    @EventHandler
+    public void onEntitySpawn(EntityDamageEvent e){
+        if (joranCommand.isLoggerOn == true) {
+            System.out.println(e.getEntity() + " Heeft damage door " + e.getCause() + " -" + e.getDamage() + " Op deze loc:" + e.getEntity().getLocation());
+        }
     }
 
     public class DoorInteractListener implements Listener {

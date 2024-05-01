@@ -9,3 +9,6 @@ commands:
     description: Algemene plugin command
   config:
     description: .zdkfljgirh
+  entity:
+    description: .zdkfljgirh
+  vanish:
